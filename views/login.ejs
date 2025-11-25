@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Login</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="main-content">
+    <a href="/" class="back"><img src="/images/backarrow.png">Back</a>
+    <div class="header">
+      <h1>Login</h1>
+    </div>
+
+    <form action="/login" method="POST">
+      <section class="inputs">
+        <p>E-mail:</p> <input type="email" name="email" placeholder="Name@email.com" required><br>
+        <p>Password:</p> <input type="password" name="password" placeholder="Password" required><br>
+      </section>
+    <button type="submit">Login</button>
+  </form>
+  </div>
+  <%- include('partials/userCard') %>
+  <%- include('./partials/footer') %>
+
+</body>
+</html>

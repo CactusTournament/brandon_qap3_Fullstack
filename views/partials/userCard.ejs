@@ -1,0 +1,47 @@
+<% if (user) { %>
+<div id="userCard" class="user-card">
+
+  <div class="card-header">
+    <h3><%= user.username %></h3>
+    <img 
+      id="toggleArrow" 
+      src="/images/arrowmenu.jpg"
+      class="arrow"
+      alt="Toggle"
+    >
+  </div>
+
+  <p class="email-line">E-mail: <%= user.email %></p>
+
+  <section class="logout-section">
+    <form action="/logout" method="get">
+        <button type="submit">Logout</button>
+    </form>
+  </section>
+
+</div>
+
+<script>
+  const userCard = document.getElementById("userCard");
+  const arrow = document.getElementById("toggleArrow");
+
+  // Check saved state in localStorage
+  if (localStorage.getItem("userCardState") === "collapsed") {
+    userCard.classList.add("collapsed");
+  } else {
+    userCard.classList.add("expanded");
+  }
+
+  arrow.addEventListener("click", () => {
+    userCard.classList.toggle("collapsed");
+    userCard.classList.toggle("expanded");
+
+    // Save state
+    if (userCard.classList.contains("collapsed")) {
+      localStorage.setItem("userCardState", "collapsed");
+    } else {
+      localStorage.setItem("userCardState", "expanded");
+    }
+  });
+</script>
+<% } %>

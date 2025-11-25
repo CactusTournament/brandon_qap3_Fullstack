@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="/css/admin.css">
+</head>
+<body>
+  <div class="container">
+    <a href="/" class="back"><img src="/images/backarrow.png">Back</a>
+    <h1>Admin Dashboard</h1>
+
+    <table class="user-table">
+      <thead>
+        <tr>
+          <th>Username</th>
+          <th>Email</th>
+          <th>Role</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% users.forEach(u => { %>
+          <tr>
+            <td><%= u.username %></td>
+            <td><%= u.email %></td>
+            <td><%= u.role %></td>
+          </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+    <%- include('partials/userCard') %>
+
+    <%- include('./partials/footer') %>
+</body>
+</html>

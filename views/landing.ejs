@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Landing</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<div class="main-content">
+  <a href="/" class="back"><img src="/images/backarrow.png">Back</a>
+  <div class="header">
+    <h1>Welcome <%= user.username %>!</h1>
+  </div>
+    <p>You are logged in as <%= user.email %>.</p>
+</div>
+<%- include('partials/userCard') %>
+
+<%- include('./partials/footer') %>
+
+<a href="/logout">Logout</a>
