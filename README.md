@@ -13,15 +13,12 @@ This is a User Management System built with Node.js, Express, and EJS. It suppor
 1. Clone the repository:
 git clone <your-repo-url>
 
-Copy code
 2. Install dependencies:
 npm install
 
-Copy code
 3. Start the server:
 npm start
 
-Copy code
 4. Open your browser at [http://localhost:3000]
 
 ## Remaining Tasks
