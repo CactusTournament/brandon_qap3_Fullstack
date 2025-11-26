@@ -21,6 +21,7 @@ p {
   font-size: calc(.8vh + .8vw);
 }
 h1 {
+  color: rgb(255, 255, 255);
   font-size: calc(4vh + 4vw);
 }
 
@@ -28,15 +29,20 @@ h1 {
   background-color: rgba(255, 255, 255, 0.548);
   min-height: 100vh;
   width: 88vw;
+
 }
 
 .header {
   display: flex;
-  background-color: rgba(75, 75, 75, 0.575);
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.712)30% , rgba(75, 75, 75, 0.747), rgba(146, 146, 146, 0.582));
   justify-content: center;
   align-items: center;
   height: 25vh;
   padding: 30px;
+  border-top: 2px solid rgba(255, 255, 255, 0.466);
+  border-bottom: 2px solid rgba(255, 255, 255, 0.801);
+  border-left: 2px solid rgba(94, 94, 94, 0.562);
+  border-right: 2px solid rgba(94, 94, 94, 0.801);
   
 }
 
@@ -62,17 +68,27 @@ h1 {
   background-color: darkorange;
 }
 
+.back:visited {
+  color: black;
+}
+
 .back img {
-  height: 8vh;
-  width: auto;
+  height: 9vh;
+  width: 4vw;
   margin: auto;
+  transform: translateX(-10px);
+}
+
+.back p {
+  transform: translateX(-30px);
+  font-size: 4vh;
 }
 
 .main-content input {
   display: flex;
   font-size: 4vh;
   padding: 10px;
-  background-color: lightsalmon;
+  background-color: rgb(241, 250, 255);
   gap: 5px;
   height: 7vh;
   width: 40vw;
@@ -243,3 +259,43 @@ button {
   color: orange;
   border-bottom: orange solid 2px;
 }
+
+/* Popup messages */
+.popup {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  max-width: 300px;
+  padding: 12px 20px;
+  border-radius: 6px;
+  color: #fff;
+  font-weight: 500;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  z-index: 1000;
+  opacity: 0;
+  transform: translateY(20px);
+  animation: slideIn 0.3s forwards;
+}
+
+/* Success messages */
+.popup.success {
+  background-color: #28a745;
+}
+
+/* Error messages */
+.popup.error {
+  background-color: #dc3545;
+}
+
+/* Slide in animation */
+@keyframes slideIn {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+
+
+

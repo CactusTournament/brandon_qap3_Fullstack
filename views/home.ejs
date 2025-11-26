@@ -16,7 +16,29 @@
     
   </div>
   <%- include('partials/userCard') %>
+  <% if (message) { %>
+    <div id="popupMessage" class="popup <%= message.type %>">
+      <%= message.text %>
+    </div>
+  <% } %>
 
   <%- include('./partials/footer') %>
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("popupMessage");
+
+    if (popup) {
+      // Auto-hide after 3 seconds
+      setTimeout(() => {
+        popup.style.animation = "fadeOut 0.4s forwards";
+
+        // Remove from DOM after fade-out
+        setTimeout(() => popup.remove(), 400);
+      }, 3000);
+    }
+  });
+  </script>
+
+
 </body>
 </html>

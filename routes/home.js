@@ -1,24 +1,33 @@
+// routes/home.js
 const express = require("express");
 const router = express.Router();
-const { getAllUsers } = require("../models/users");
 const { ensureAuthenticated, ensureAdmin } = require("../middleware/auth");
+const { getAllUsers } = require("../models/users");
 
 // Home
 router.get("/", (req, res) => {
-  res.render("home", { user: req.session.user || null });
+  const msg = req.query.message
+    ? { type: req.query.type || "success", text: req.query.message }
+    : req.session.message || null;
+
+  req.session.message = null;
+
+  res.render("home", { message: msg });
 });
 
-// Landing page
+
+// Landing
 router.get("/landing", ensureAuthenticated, (req, res) => {
   const user = req.session.user;
+
   if (user.role === "admin") {
     return res.render("admin", { users: getAllUsers(), user });
-  } else {
-    return res.render("landing", { user });
   }
+
+  return res.render("landing", { user });
 });
 
-// Optional separate admin route
+// Admin page
 router.get("/admin", ensureAdmin, (req, res) => {
   res.render("admin", { users: getAllUsers(), user: req.session.user });
 });

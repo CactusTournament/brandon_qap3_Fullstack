@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>User Dashboard</title>
+  <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+  <div class="main-content">
+    <!-- Back / Navigation -->
+    <a href="/" class="back">
+      <img src="/images/backarrow.png" alt="Back">
+      <p>Back</p>
+    </a>
+
+    <!-- Header -->
+    <div class="header">
+      <h1>Welcome, <%= user.username %>!</h1>
+    </div>
+
+    <!-- User Info -->
+    <section class="user-info">
+      <p>You are logged in as <%= user.email %>.</p>
+    </section>
+
+    <!-- Optional user card partial -->
+    <%- include('partials/userCard') %>
+
+    <!-- Flash message -->
+    <% if (message) { %>
+      <div id="popupMessage" class="popup <%= message.type %>">
+        <%= message.text %>
+      </div>
+    <% } %>
+  </div>
+
+  <!-- Footer -->
+  <%- include('partials/footer') %>
+
+  <!-- Optional popup auto-hide script -->
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const popup = document.getElementById("popupMessage");
+      if (popup) {
+        setTimeout(() => {
+          popup.style.animation = "fadeOut 0.4s forwards";
+          setTimeout(() => popup.remove(), 400);
+        }, 3000);
+      }
+    });
+  </script>
+</body>
+</html>

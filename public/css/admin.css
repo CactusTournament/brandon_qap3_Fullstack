@@ -12,6 +12,7 @@
 h1 {
   font-family: 'Montserrat', sans-serif;
   font-weight: 700;
+  color: black;
   text-align: center;
   margin-bottom: 20px;
 }
@@ -51,4 +52,8 @@ h1 {
 
 .btn.logout:hover {
   background-color: #c82333;
+}
+
+.user-card {
+  margin-right: 15px;
 }

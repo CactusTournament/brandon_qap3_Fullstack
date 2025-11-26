@@ -1,0 +1,12 @@
+<% if (message) { %>
+<div class="popup <%= message.type %>">
+  <p><%= message.text %></p>
+</div>
+
+<script>
+  setTimeout(() => {
+    const popup = document.querySelector(".popup");
+    if (popup) popup.remove();
+  }, 3000);
+</script>
+<% } %>

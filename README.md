@@ -1,34 +1,48 @@
 # User Management System
 
 ## Description
-This is a User Management System built with Node.js, Express, and EJS. It supports:
+This is a User Management System built with **Node.js**, **Express**, and **EJS**. It supports:
 
 - User registration and login with password hashing (bcrypt)
 - Session-based authentication
 - Role-based access: admin vs regular users
+- Flash messages for login, signup, and logout (displayed as animated popups)
+- Email validation to enforce standard domains (.com, .ca, .net, etc.)
 - A collapsible user card that remembers its state across pages
 - Logout functionality
 
-## Setup
-1. Clone the repository:
-git clone <your-repo-url>
+## Features
 
-Copy code
-2. Install dependencies:
+- **Registration:** Users can register with a unique username and email. Passwords must be at least 8 characters long.
+- **Login:** Authenticates users with email and hashed password comparison.
+- **Role-Based Access:** Admin users can view all registered users; regular users only see their dashboard.
+- **Error Handling:** Validation and error messages displayed via popups for a consistent user experience.
+- **Security:** Passwords are hashed using bcrypt. No plaintext passwords are stored.
+
+## Setup
+
+1. **Clone the repository:**
+   ```bash
+   git clone <your-repo-url>
+   cd <your-repo-name>
+
+Install dependencies:
 npm install
 
-Copy code
-3. Start the server:
+Start the server:
 npm start
 
-Copy code
-4. Open your browser at [http://localhost:3000]
-
-## Remaining Tasks
-- Improve input validation and error messages for signup/login
-- Add styling to pages for a more consistent UI/UX
+Open your browser:
+http://localhost:3000
 
 
+Project Structure
+-index.js – Main application entry point, sets up Express, sessions, routes, and middleware.
+-routes/auth.js – Handles signup, login, and logout routes.
+-routes/home.js – Handles home, landing, and admin pages.
+-models/users.js – In-memory user storage and helper functions.
+-views/ – EJS templates for pages and partials (user card, footer, etc.).
+-public/ – Static assets (CSS, images, JS for popup animations).
 
-Author: Brandon Maloney  
-Date: November 25, 2025
+Author: Brandon Maloney
+Date: November 26, 2025

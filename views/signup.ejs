@@ -3,25 +3,93 @@
 <head>
   <title>Sign Up</title>
   <link rel="stylesheet" href="/css/styles.css">
+
+  <style>
+    /* Animation for popup errors/success */
+    #popupMessage {
+      opacity: 0;
+      transform: translateY(10px);
+      animation: fadeSlideIn 0.45s ease-out forwards;
+    }
+
+    @keyframes fadeSlideIn {
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .popup {
+      padding: 12px 18px;
+      border-radius: 8px;
+      margin-top: 15px;
+      width: fit-content;
+      font-weight: 500;
+    }
+
+    .popup.error {
+      background-color: #ffdddd;
+      color: #a30000;
+      border: 1px solid #ff7b7b;
+    }
+
+    .popup.success {
+      background-color: #ddffec;
+      color: #006b37;
+      border: 1px solid #6fffac;
+    }
+
+    /* Password hint */
+    .password-hint {
+      font-size: 0.82rem;
+      margin-top: 5px;
+      color: #555;
+    }
+  </style>
 </head>
+
 <body>
   <div class="main-content">
-    <a href="/" class="back"><img src="/images/backarrow.png">Back</a>
+    <a href="/" class="back">
+      <img src="/images/backarrow.png">
+      <p>Back</p>
+    </a>
+
     <div class="header">
       <h1>Sign Up</h1>
     </div>
     
     <section class="inputs">
-      <form action="/signup" method="POST">
-      <p>Username:</p><input type="text" name="username" placeholder="Username" required><br>
-      <p>E-mail:</p><input type="email" name="email" placeholder="Name@email.com" required><br>
-      <p>Password:</p><input type="password" name="password" placeholder="Password" required><br>
-    </section>
+      <form action="/signup" method="POST" novalidate>
+        <p>Username:</p>
+        <input name="username" placeholder="Username">
 
-    <button type="submit">Sign Up</button>
-  </form>
+        <p>E-mail:</p>
+        <input name="email" placeholder="name@example.com">
+
+        <p>Password:</p>
+        <input name="password" placeholder="Password">
+
+        <!-- UI password rules (server enforces them too) -->
+        <div class="password-hint">
+          • Min 8 characters  
+          • At least 1 uppercase  
+          • 1 number  
+          • 1 special character (!@#$%^&*)  
+        </div>
+
+        <button type="submit">Sign Up</button>
+      </form>
+    </section>
   </div>
+
   <%- include('partials/userCard') %>
+
+  <% if (message) { %>
+    <div id="popupMessage" class="popup <%= message.type %>">
+      <%= message.text %>
+    </div>
+  <% } %>
 
   <%- include('./partials/footer') %>
 </body>

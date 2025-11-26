@@ -7,7 +7,7 @@
 </head>
 <body>
   <div class="container">
-    <a href="/" class="back"><img src="/images/backarrow.png">Back</a>
+    <a href="/" class="back"><img src="/images/backarrow.png"><p>Back</p></a>
     <h1>Admin Dashboard</h1>
 
     <table class="user-table">
@@ -30,6 +30,11 @@
     </table>
   </div>
     <%- include('partials/userCard') %>
+    <% if (message) { %>
+      <div id="popupMessage" class="popup <%= message.type %>">
+        <%= message.text %>
+      </div>
+    <% } %>
 
     <%- include('./partials/footer') %>
 </body>

@@ -4,15 +4,68 @@
   <title>Landing</title>
   <link rel="stylesheet" href="/css/styles.css">
 </head>
-<div class="main-content">
-  <a href="/" class="back"><img src="/images/backarrow.png">Back</a>
-  <div class="header">
-    <h1>Welcome <%= user.username %>!</h1>
-  </div>
+<body>
+  <div class="main-content">
+    <a href="/" class="back">
+      <img src="/images/backarrow.png">
+      <p>Back</p>
+    </a>
+
+    <div class="header">
+      <h1>Welcome <%= user.username %>!</h1>
+    </div>
+
     <p>You are logged in as <%= user.email %>.</p>
-</div>
-<%- include('partials/userCard') %>
 
-<%- include('./partials/footer') %>
+    <% if (user.role === "admin") { %>
+      <h2>Registered Users</h2>
+      <table border="1" cellpadding="5" cellspacing="0">
+        <thead>
+          <tr>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% users.forEach(u => { %>
+            <tr>
+              <td><%= u.username %></td>
+              <td><%= u.email %></td>
+              <td><%= u.role %></td>
+            </tr>
+          <% }) %>
+        </tbody>
+      </table>
+    <% } else { %>
+      <p>This is your personal dashboard.</p>
+    <% } %>
 
-<a href="/logout">Logout</a>
+  </div>
+
+  <%- include('partials/userCard') %>
+
+  <% if (message) { %>
+    <div id="popupMessage" class="popup <%= message.type %>">
+      <%= message.text %>
+    </div>
+  <% } %>
+
+  <%- include('./partials/footer') %>
+
+  <script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const popup = document.getElementById("popupMessage");
+    if (popup) {
+      // Auto-hide after 3 seconds
+      setTimeout(() => {
+        popup.style.animation = "fadeOut 0.4s forwards";
+
+        // Remove from DOM after fade-out
+        setTimeout(() => popup.remove(), 400);
+      }, 3000);
+    }
+  });
+  </script>
+</body>
+</html>
